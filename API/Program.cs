@@ -19,6 +19,13 @@ internal class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddCors(opt =>
+        {
+            opt.AddPolicy("CorsPolicy", policy => {
+                policy.AllowAnyHeader().AllowAnyMethod()
+                .WithOrigins("https://localhost:4200/");
+            });
+        });
 
         var app = builder.Build();
 
@@ -30,6 +37,7 @@ internal class Program
         app.UseStatusCodePagesWithReExecute("/errors/{0}");
         app.UseHttpsRedirection();
         app.UseStaticFiles();
+        app.UseCors("CorsPolicy"); 
         app.UseAuthorization();
         app.MapControllers();
 
