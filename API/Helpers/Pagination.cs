@@ -12,7 +12,7 @@ namespace API.Helpers
         public int Count { get; set;}
         public int PageIndex { get;set; }
         public int PageSize { get;set; }
-        public string Search {get;set;}
+        public string? Search {get;set;}
         public Pagination(IReadOnlyList<T> data, int count, int pageIndex, int pageSize)
         {
             Data = data;
